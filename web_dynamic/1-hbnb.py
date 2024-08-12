@@ -22,7 +22,7 @@ def close_db(error):
     storage.close()
 
 
-@app.route('/0-hbnb/', strict_slashes=False)
+@app.route('/1-hbnb/', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
     states = storage.all(State).values()
@@ -41,8 +41,8 @@ def hbnb():
     # Generate a unique UUID to avoid asset caching
     cache_id = uuid.uuid4()
 
-    # Check if '0-hbnb.html' exists, otherwise use '8-hbnb.html'
-    template_name = '0-hbnb.html'
+    # Check if '1-hbnb.html' exists, otherwise use '8-hbnb.html'
+    template_name = '1-hbnb.html'
     if not os.path.exists('web_dynamic/templates/{}'.format(template_name)):
         template_name = '8-hbnb.html'
 
