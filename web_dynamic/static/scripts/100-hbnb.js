@@ -1,5 +1,7 @@
 $(document).ready(function() {
-  let amenities = [{id, name}];
+  let amenities = [];
+  let cities = [];
+  let states = [];
 
   function fetchPlaces(filters = {}) {
     $.post('http://127.0.0.1:5001/api/v1/places_search', filters, function(data, status) {
@@ -17,6 +19,12 @@ $(document).ready(function() {
     const filters = {
       amenities: amenities.map(function (amenity) {
         return amenity.id
+      }),
+      cities: amenities.map(function (city) {
+        return city.id
+      }),
+      states: amenities.map(function (state) {
+        return state.id
       })
     }
     fetchPlaces(filters);
@@ -30,7 +38,35 @@ $(document).ready(function() {
     }
   });
 
-  $('.amenities .popover input').change(function() {
+  $('.locations .city input[type=checkbox]').change(function() {
+    if ($(this).is(':checked')) {
+      cities.push({id: $(this).data('id'), name: $(this).data('name')});
+    } else {
+      cities = cities.filter(function(city) {
+        return city.id !== $(this).data('id');
+      });
+    }
+
+    cities.forEach(function(city) {
+      $('.locations h4').append((city.length > 0 ? ', ' : '') + city.name)
+    })
+  });
+
+  $('.locations .state input[type=checkbox]').change(function() {
+    if ($(this).is(':checked')) {
+      states.push({id: $(this).data('id'), name: $(this).data('name')});
+    } else {
+      states = states.filter(function(state) {
+        return state.id !== $(this).data('id');
+      });
+    }
+
+    states.forEach(function(city) {
+      $('.locations h4').append((city.length > 0 ? ', ' : '') + city.name)
+    })
+  });
+
+  $('.amenities .popover input[type=checkbox]').change(function() {
     if ($(this).is(':checked')) {
       amenities.push({id: $(this).data('id'), name: $(this).data('name')});
     } else {

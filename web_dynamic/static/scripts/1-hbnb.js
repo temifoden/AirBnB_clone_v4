@@ -2,10 +2,10 @@ $(function() {
   let amenities = [];
   $('.amenities .popover input').change(function() {
     if ($(this).is(':checked')) {
-      amenities.push({id: $(this).data(id), name: $(this).data.name});
+      amenities.push({id: $(this).data('id'), name: $(this).data('name')});
     } else {
       amenities = amenities.filter(function(amenity) {
-        return amenity.id !== $(this).data(id);
+        return amenity.id !== $(this).data('id');
       });
     }
 

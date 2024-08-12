@@ -44,7 +44,7 @@ def hbnb():
     # Check if '1-hbnb.html' exists, otherwise use '8-hbnb.html'
     template_name = '1-hbnb.html'
     if not os.path.exists('web_dynamic/templates/{}'.format(template_name)):
-        template_name = '8-hbnb.html'
+        template_name = '0-hbnb.html'
 
     return render_template(template_name,
                            states=st_ct,
